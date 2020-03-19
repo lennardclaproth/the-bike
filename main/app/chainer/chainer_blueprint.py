@@ -2,8 +2,11 @@ from flask import Blueprint, request, Response, json
 from .chain_handler import rotation
 from app import mongo, rest
 from bson import json_util, ObjectId
-import inspect
 from pprint import pprint
+import inspect
+
+import redis
+
 chainer_routes = Blueprint('chainer_routes', __name__)
 
 headers = {"Content-Type": "application/json"}
@@ -24,7 +27,6 @@ def create_chain():
 @chainer_routes.route('/chainer/chain_from_source', methods=['GET'])
 def chain_from_source():
     chain_name = request.args.get('chain_name')
-    print(chain_name)
     data_to_pass = {'collection':'chains', 'key':chain_name}
     chain = mongo.mongo_blueprint.READ_FROM_KEY(**data_to_pass)
     if chain is not None:

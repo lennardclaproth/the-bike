@@ -1,12 +1,13 @@
 import os
 from flask import Flask
+from celery import Celery
 
 #TODO: implement a **kwargs handler
 
 def create_app(config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config['MONGO_URI']='mongodb://localhost:27017/osrs_ge'
-    
+
     from . import mongo, rest, chainer
 
     mongo.init_module(app)
@@ -25,6 +26,7 @@ def create_app(config=None):
         pass
     @app.route('/')
     def hello():
-        return 'Hello, World!'
+        return 'hello world'
 
     return app
+

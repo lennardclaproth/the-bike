@@ -5,7 +5,6 @@ import json
 mongo = PyMongo()
 
 def get_all_from_collection(collection):
-    print(collection)
     documents = [doc for doc in mongo.db[collection].find({})]
     return json.loads(json_util.dumps(documents))
 

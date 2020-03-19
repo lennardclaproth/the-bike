@@ -2,7 +2,6 @@ from app import mongo, rest
 from json import dumps, loads
 from bson import json_util, ObjectId
 from progress.bar import ChargingBar
-
 import time
 
 roller_types = {
